@@ -1,5 +1,7 @@
 package io.mauth.rahulb.fakefood10.activity;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -20,6 +23,9 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,11 +36,12 @@ import io.mauth.rahulb.fakefood10.core.IntentResult;
 import io.mauth.rahulb.fakefood10.core.Singleton;
 import io.mauth.rahulb.fakefood10.dto.ImageUploadResponse;
 import io.mauth.rahulb.fakefood10.fragment.DatePickerFragment;
+import io.mauth.rahulb.fakefood10.listener.DateFragment;
 import io.mauth.rahulb.fakefood10.model.ProductAuditRequest;
 import io.mauth.rahulb.fakefood10.util.Constants;
 import io.mauth.rahulb.fakefood10.util.Util;
 
-public class ProductDetailsGraphicsActivity extends AppCompatActivity {
+public class ProductDetailsGraphicsActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
 
     private ProductAuditRequest productAuditRequest;
@@ -56,7 +63,7 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity {
     }
 
     public void showDatePickerDialog(View view) {
-        DialogFragment newFragment = new DatePickerFragment();
+        DialogFragment newFragment = new DatePickerFragment().setListener(this);
         newFragment.show(getFragmentManager(), "datePicker");
     }
 
@@ -194,7 +201,6 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity {
     }
 
     private void processAuditRequest() throws JSONException {
-
         Response.ErrorListener errorListener = new Response.ErrorListener() {
 
             @Override
@@ -256,4 +262,15 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.clear();
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+        productAuditRequest.setExpirationDate( calendar.getTime());
+    }
+
 }
