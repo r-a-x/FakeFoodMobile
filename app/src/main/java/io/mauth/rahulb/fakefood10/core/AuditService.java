@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class AuditService {
 
-    private static final String host = "http://192.168.0.100:8080";
+    private static final String host = "http://192.168.0.103:8080";
 //    private static final String host = "http://35.202.86.142:8080";
     private static final String AUDITS_PATH = "/audits";
     private static final String PRODUCTS_PATH="/products";
@@ -77,7 +77,7 @@ public class AuditService {
     }
 
     public void postImages(String androidId, Map<String,File> files,
-                           Response.Listener<JSONObject>listener,
+                           Response.Listener<String>listener,
                            Response.ErrorListener errorListener){
         String url = host + FILE_PATH;
         MultiPartRequest multiPartRequest = new MultiPartRequest(errorListener,listener,files,url);

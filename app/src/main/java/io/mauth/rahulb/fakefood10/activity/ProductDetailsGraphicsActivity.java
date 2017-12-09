@@ -27,6 +27,7 @@ import io.mauth.rahulb.fakefood10.R;
 import io.mauth.rahulb.fakefood10.core.AuditService;
 import io.mauth.rahulb.fakefood10.core.IntentIntegrator;
 import io.mauth.rahulb.fakefood10.core.IntentResult;
+import io.mauth.rahulb.fakefood10.core.Singleton;
 import io.mauth.rahulb.fakefood10.dto.ImageUploadResponse;
 import io.mauth.rahulb.fakefood10.fragment.DatePickerFragment;
 import io.mauth.rahulb.fakefood10.model.ProductAuditRequest;
@@ -167,12 +168,12 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity {
         if ( logoImage == null || backImage == null || frontImage == null)
             return;
 
-        final Response.Listener<JSONObject> imageResponse = new Response.Listener<JSONObject>(){
+        final Response.Listener<String> imageResponse = new Response.Listener<String>(){
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(String response) {
 
                 Type token = new TypeToken<ImageUploadResponse>() {}.getType();
-                imageUploadResponse = Util.gson.fromJson(response.toString(), token);
+                imageUploadResponse = Util.gson.fromJson(response, token);
 
             }
         };
