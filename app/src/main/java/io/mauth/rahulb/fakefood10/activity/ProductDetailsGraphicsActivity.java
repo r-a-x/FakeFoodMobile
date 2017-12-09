@@ -153,9 +153,9 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity {
 
     private Map<String,File> createImageUploadRequest(){
         Map<String,File> hashMap = new HashMap<>();
-        File logoImage = Util.convertBitmapToFile(this.logoImage);
-        File backImage = Util.convertBitmapToFile(this.backImage);
-        File frontImage = Util.convertBitmapToFile(this.frontImage);
+        File logoImage = Util.convertBitmapToFile(this.logoImage,this);
+        File backImage = Util.convertBitmapToFile(this.backImage,this);
+        File frontImage = Util.convertBitmapToFile(this.frontImage,this);
         hashMap.put(AuditService.LOGO_IMAGE_PARAM,logoImage);
         hashMap.put(AuditService.BACK_IMAGE_PARAM,backImage);
         hashMap.put(AuditService.FRONT_IMAGE_PARAM,frontImage);

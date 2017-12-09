@@ -26,7 +26,8 @@ import java.util.Map;
 
 public class AuditService {
 
-    private static final String host = "http://35.202.86.142:8080";
+    private static final String host = "http://192.168.0.100:8080";
+//    private static final String host = "http://35.202.86.142:8080";
     private static final String AUDITS_PATH = "/audits";
     private static final String PRODUCTS_PATH="/products";
     private static final String ANDROID_ID_PARAM = "?androidId=";
@@ -89,7 +90,7 @@ public class AuditService {
                           Response.ErrorListener errorListener){
 
         String url = host + FILE_PATH + FILE_PARAM + imageName;
-        ImageRequest imageRequest = new ImageRequest(url,listener,0,0, ImageView.ScaleType.CENTER_CROP,Bitmap.Config.RGB_565,errorListener)
+        ImageRequest imageRequest = new ImageRequest(url,listener,0,0, ImageView.ScaleType.CENTER_CROP,Bitmap.Config.RGB_565,errorListener);
         singleton.addToRequestQueue(imageRequest);
 
     }

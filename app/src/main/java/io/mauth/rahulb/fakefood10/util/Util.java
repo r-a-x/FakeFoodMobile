@@ -1,6 +1,7 @@
 package io.mauth.rahulb.fakefood10.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -18,6 +19,7 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -86,11 +88,18 @@ public final class Util {
                 Settings.Secure.ANDROID_ID);
     }
 
-    public static File convertBitmapToFile(Bitmap bitmap)  {
-        File file = new File(getRandomName());
+    public static File convertBitmapToFile(Bitmap bitmap, Context context)  {
+        File outputDir = context.getCacheDir(); // context being the Activity pointer
+        File outputFile = null;
+        try {
+
+            outputFile = File.createTempFile(getRandomName(), "tmp", outputDir);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         OutputStream outputStream = null;
         try {
-            outputStream = new FileOutputStream(file);
+            outputStream = new FileOutputStream(outputFile);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -100,7 +109,7 @@ public final class Util {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return file;
+        return outputFile;
     }
 
     public static String getRandomName(){
