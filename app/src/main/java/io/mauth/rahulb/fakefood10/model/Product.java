@@ -1,25 +1,13 @@
 package io.mauth.rahulb.fakefood10.model;
 
-import android.graphics.Bitmap;
-
-import com.android.volley.Response;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-
-import io.mauth.rahulb.fakefood10.util.Constants;
-import io.mauth.rahulb.fakefood10.util.Util;
 
 /**
  * Created by rahulb on 1/11/17.
  */
 
-public class Product implements Serializable,ListableProduct {
+public class Product implements Serializable {
 
     private String name;
     private String companyName;
@@ -48,12 +36,10 @@ public class Product implements Serializable,ListableProduct {
         this.description = description;
     }
 
-    @Override
-    public Bitmap getImage() {
-        return Util.base64ToBitmap(image);
+    public String getImage() {
+        return image;
     }
 
-    @Override
     public String getData() {
         return name + " " + companyName + " productType is not valid " + productType;
     }

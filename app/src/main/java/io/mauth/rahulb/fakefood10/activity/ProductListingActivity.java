@@ -17,7 +17,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import io.mauth.rahulb.fakefood10.R;
-import io.mauth.rahulb.fakefood10.adapter.RecyclerViewAdapter;
+import io.mauth.rahulb.fakefood10.adapter.ProductListingAdapter;
 import io.mauth.rahulb.fakefood10.core.AuditService;
 import io.mauth.rahulb.fakefood10.model.Product;
 import io.mauth.rahulb.fakefood10.util.Constants;
@@ -64,7 +64,7 @@ public class ProductListingActivity extends AppCompatActivity {
     private void initProductView(List<Product> products){
 
         r1= (RecyclerView) findViewById(R.id.recycler_view);
-        RecyclerViewAdapter<Product> adapter  = new RecyclerViewAdapter(this,products,ProductTextDetailsActivity.class, Constants.PRODUCT_DETAIL_KEY);
+        ProductListingAdapter adapter  = new ProductListingAdapter(this,products,ProductTextDetailsActivity.class, Constants.PRODUCT_DETAIL_KEY);
         r1.setAdapter(adapter);
         r1.setLayoutManager(new LinearLayoutManager(this));
 

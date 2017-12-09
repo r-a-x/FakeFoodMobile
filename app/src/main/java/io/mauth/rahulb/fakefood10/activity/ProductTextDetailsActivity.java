@@ -134,4 +134,8 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
             productAuditRequest = new ProductAuditRequest();
 
     }
+
+    private void processImageRequestForListing(){
+
+    }
 }

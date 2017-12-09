@@ -19,42 +19,44 @@ import java.util.List;
 
 import io.mauth.rahulb.fakefood10.R;
 import io.mauth.rahulb.fakefood10.core.AuditService;
-import io.mauth.rahulb.fakefood10.dto.ProductAuditResponse;
+import io.mauth.rahulb.fakefood10.model.Product;
 import io.mauth.rahulb.fakefood10.util.Constants;
 
 /**
- * Created by rahulb on 7/12/17.
+ * Created by rahulb on 1/11/17.
  */
 
-public class AuditResponseAdapter extends RecyclerView.Adapter<AuditResponseHolder> {
+public class ProductListingAdapter extends RecyclerView.Adapter<ProductListingHolder>{
 
-    private List<ProductAuditResponse> auditResponses;
+    private List<Product> listableProducts;
     private ContextWrapper ct;
     private Class aClass;
     private String dataKey;
 
-    public AuditResponseAdapter(List<ProductAuditResponse> auditResponses, ContextWrapper ct, Class aClass, String dataKey) {
-        this.auditResponses = auditResponses;
-        this.ct = ct;
+
+    public ProductListingAdapter(ContextWrapper ct, List<Product> listableProducts, Class aClass, String dataKey){
+        this.ct=ct;
+        this.listableProducts = listableProducts;
         this.aClass = aClass;
         this.dataKey = dataKey;
     }
 
     @Override
-    public AuditResponseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ProductListingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(ct);
         View view = inflater.inflate(R.layout.recycler_layout ,parent,false);
-        return new AuditResponseHolder(view);
+        return new ProductListingHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(AuditResponseHolder holder, final int position) {
+    public void onBindViewHolder(ProductListingHolder productListingHolder, final int position) {
 
-        holder.recyclerTextView.setText(
-                auditResponses.get(position).getData()
+        Product localProduct = listableProducts.get(position);
+        productListingHolder.recyclerTextView.setText(
+                localProduct.getData()
         );
 
-        processImageRequest(auditResponses.get(position),holder);
+        processImageRequestForList(localProduct, productListingHolder);
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -62,27 +64,22 @@ public class AuditResponseAdapter extends RecyclerView.Adapter<AuditResponseHold
                 // Need to send the product from here to the Next Activity
                 Toast.makeText(ct,"This is the position number"+ String.valueOf(position),Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ct,aClass);
-                intent.putExtra(dataKey,auditResponses.get(position));
+                intent.putExtra(dataKey,listableProducts.get(position));
                 ct.startActivity(intent);
 
             }
         };
 
-        holder.recyclerTextView.setOnClickListener(onClickListener);
-        holder.imageView.setOnClickListener(onClickListener);
+        productListingHolder.recyclerTextView.setOnClickListener(onClickListener);
+        productListingHolder.imageView.setOnClickListener(onClickListener);
+
     }
 
-    @Override
-    public int getItemCount() {
-        return auditResponses.size();
-    }
+    private void processImageRequestForList(Product product, final ProductListingHolder holder){
 
-    private void processImageRequest(ProductAuditResponse productAuditResponse, final AuditResponseHolder holder){
-
-       Response.Listener<Bitmap> listener = new Response.Listener<Bitmap>() { // Bitmap listener
+        Response.Listener<Bitmap> listener = new Response.Listener<Bitmap>() { // Bitmap listener
             @Override
             public void onResponse(Bitmap response) {
-
 
                 holder.imageView.setImageBitmap(
                         response
@@ -100,16 +97,21 @@ public class AuditResponseAdapter extends RecyclerView.Adapter<AuditResponseHold
         };
 
         AuditService auditService = new AuditService(ct);
-        auditService.getImages(Constants.getAndroidId(ct),productAuditResponse.getFrontCanisterImageName(),listener,errorListener);
+        auditService.getImages(Constants.getAndroidId(ct),product.getImage(),listener,errorListener);
     }
+    @Override
+    public int getItemCount() {
+        return listableProducts.size();
+    }
+
 }
 
-class AuditResponseHolder extends RecyclerView.ViewHolder{
+class ProductListingHolder extends RecyclerView.ViewHolder{
 
     TextView recyclerTextView;
     ImageView imageView;
 
-    public AuditResponseHolder(View itemView) {
+    public ProductListingHolder(View itemView) {
         super(itemView);
         recyclerTextView = (TextView) itemView.findViewById(R.id.recyclerTextView);
         imageView = (ImageView) itemView.findViewById(R.id.recyclerImageView);

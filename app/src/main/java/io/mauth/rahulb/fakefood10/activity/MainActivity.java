@@ -29,7 +29,6 @@ import java.util.List;
 
 import io.mauth.rahulb.fakefood10.R;
 import io.mauth.rahulb.fakefood10.adapter.AuditResponseAdapter;
-import io.mauth.rahulb.fakefood10.adapter.RecyclerViewAdapter;
 import io.mauth.rahulb.fakefood10.core.AuditService;
 import io.mauth.rahulb.fakefood10.dto.ProductAuditResponse;
 import io.mauth.rahulb.fakefood10.model.ProductAuditRequest;
@@ -155,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
             }
         };
 

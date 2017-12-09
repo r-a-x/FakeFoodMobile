@@ -194,7 +194,7 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity implements
         };
 
         AuditService auditService = new AuditService(this);
-        auditService.postImages(Constants.androidId,
+        auditService.postImages(Constants.getAndroidId(this),
                 createImageUploadRequest(),
                 imageResponse,
                 imageError);
@@ -228,7 +228,7 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity implements
             return;
 
         AuditService auditService = new AuditService(this);
-        auditService.postAudits(Constants.androidId,
+        auditService.postAudits(Constants.getAndroidId(this),
                 productAuditRequest,
                 responseArray,
                 errorListener);
