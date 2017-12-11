@@ -1,6 +1,5 @@
 package io.mauth.rahulb.fakefood10.adapter;
 
-import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;

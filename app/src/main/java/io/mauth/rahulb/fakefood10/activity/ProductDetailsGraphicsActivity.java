@@ -1,13 +1,12 @@
 package io.mauth.rahulb.fakefood10.activity;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
@@ -19,13 +18,10 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,10 +29,8 @@ import io.mauth.rahulb.fakefood10.R;
 import io.mauth.rahulb.fakefood10.core.AuditService;
 import io.mauth.rahulb.fakefood10.core.IntentIntegrator;
 import io.mauth.rahulb.fakefood10.core.IntentResult;
-import io.mauth.rahulb.fakefood10.core.Singleton;
 import io.mauth.rahulb.fakefood10.dto.ImageUploadResponse;
 import io.mauth.rahulb.fakefood10.fragment.DatePickerFragment;
-import io.mauth.rahulb.fakefood10.listener.DateFragment;
 import io.mauth.rahulb.fakefood10.model.ProductAuditRequest;
 import io.mauth.rahulb.fakefood10.util.Constants;
 import io.mauth.rahulb.fakefood10.util.Util;
@@ -223,6 +217,7 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity implements
         productAuditRequest.setLogoImageName(imageUploadResponse.getLogoImageName());
         productAuditRequest.setBackImageName(imageUploadResponse.getBackImageName());
         productAuditRequest.setFrontImageName(imageUploadResponse.getFrontImageName());
+        productAuditRequest.setAndroidId(Constants.getAndroidId(this));
 
         if ( !isAllPropertyScanned(productAuditRequest))
             return;

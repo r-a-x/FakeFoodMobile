@@ -4,22 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.opengl.GLException;
 import android.provider.Settings;
 import android.util.Base64;
-import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,10 +20,6 @@ import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-
-import io.mauth.rahulb.fakefood10.model.Product;
-
-import static io.mauth.rahulb.fakefood10.util.UnixEpochDateTypeAdapter.getUnixEpochDateTypeAdapter;
 
 /**
  * Created by rahulb on 7/11/17.

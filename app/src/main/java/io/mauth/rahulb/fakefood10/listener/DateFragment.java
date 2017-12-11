@@ -1,6 +1,5 @@
 package io.mauth.rahulb.fakefood10.listener;
 
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Context;
 

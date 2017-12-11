@@ -5,15 +5,9 @@ import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import io.mauth.rahulb.fakefood10.R;
 
 /**
  * Created by rahulb on 2/11/17.

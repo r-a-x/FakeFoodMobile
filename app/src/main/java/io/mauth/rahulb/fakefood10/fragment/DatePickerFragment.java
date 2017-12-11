@@ -1,18 +1,11 @@
 package io.mauth.rahulb.fakefood10.fragment;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.TimePickerDialog;
-import android.content.Context;
 import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.widget.DatePicker;
 
 import java.util.Calendar;
-
-import io.mauth.rahulb.fakefood10.activity.ProductDetailsGraphicsActivity;
 
 /**
  * Created by rahulb on 3/11/17.

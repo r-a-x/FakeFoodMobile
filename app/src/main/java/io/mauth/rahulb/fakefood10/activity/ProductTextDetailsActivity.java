@@ -1,8 +1,8 @@
 package io.mauth.rahulb.fakefood10.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -97,7 +97,7 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
         productAuditRequest.setFlavour( flavourSpinner.getSelectedItem().toString());
         productAuditRequest.setFlavour(sizeSpinner.getSelectedItem().toString());
         productAuditRequest.setLotNumber(lotNumber.getText().toString());
-        productAuditRequest.setAndroidId(1L);
+        productAuditRequest.setAndroidId(Constants.getAndroidId(this));
         productAuditRequest.setName("Testing");
         productAuditRequest.setCompanyId(1L);
         productAuditRequest.setSize("2");

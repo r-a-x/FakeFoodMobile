@@ -41,7 +41,7 @@ public class Product implements Serializable {
     }
 
     public String getData() {
-        return name + " " + companyName + " productType is not valid " + productType;
+        return name + " \n " + companyName ;
     }
 
 

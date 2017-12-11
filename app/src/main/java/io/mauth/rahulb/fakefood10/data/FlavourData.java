@@ -1,7 +1,5 @@
 package io.mauth.rahulb.fakefood10.data;
 
-import android.widget.GridLayout;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,7 +2,6 @@ package io.mauth.rahulb.fakefood10.core;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.widget.ImageView;
 
 import com.android.volley.Request;
@@ -12,13 +11,12 @@ import com.android.volley.toolbox.JsonArrayRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import io.mauth.rahulb.fakefood10.model.ProductAuditRequest;
-import io.mauth.rahulb.fakefood10.util.Util;
 
 import java.io.File;
 import java.util.Map;
+
+import io.mauth.rahulb.fakefood10.model.ProductAuditRequest;
+import io.mauth.rahulb.fakefood10.util.Util;
 
 /**
  * Created by rahulb on 4/11/17.
@@ -26,8 +24,8 @@ import java.util.Map;
 
 public class AuditService {
 
-    private static final String host = "http://192.168.0.103:8080";
-//    private static final String host = "http://35.202.86.142:8080";
+//    private static final String host = "http://192.168.0.103:8080";
+    private static final String host = "http://35.202.86.142:8080";
     private static final String AUDITS_PATH = "/audits";
     private static final String PRODUCTS_PATH="/products";
     private static final String ANDROID_ID_PARAM = "?androidId=";

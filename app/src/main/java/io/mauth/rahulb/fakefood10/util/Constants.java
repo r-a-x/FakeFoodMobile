@@ -1,6 +1,5 @@
 package io.mauth.rahulb.fakefood10.util;
 
-import android.content.Context;
 import android.content.ContextWrapper;
 import android.provider.Settings;
 

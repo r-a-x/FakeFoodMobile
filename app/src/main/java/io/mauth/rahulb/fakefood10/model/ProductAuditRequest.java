@@ -6,14 +6,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import cz.msebera.android.httpclient.entity.mime.content.FileBody;
 import io.mauth.rahulb.fakefood10.util.Util;
 
 /**
@@ -39,7 +37,7 @@ public class ProductAuditRequest implements Serializable,ListableProduct {
 
     private Long id; // It will be stored in the local db, just tells the request made by the user
     private Long dbId;  // In the server DB
-    private Long androidId;
+    private String androidId;
     private RequestStatus status;
     private String name;
     private Long companyId;
@@ -99,11 +97,11 @@ public class ProductAuditRequest implements Serializable,ListableProduct {
 
     }
 
-    public Long getAndroidId() {
+    public String getAndroidId() {
         return androidId;
     }
 
-    public void setAndroidId(Long androidId) {
+    public void setAndroidId(String androidId) {
         this.androidId = androidId;
     }
 
