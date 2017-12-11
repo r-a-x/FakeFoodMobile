@@ -11,16 +11,6 @@
     tools:context="io.mauth.rahulb.fakefood10.activity.ProductTextDetailsActivity">
 
 
-    <Button
-        android:text="Next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/purchaseFromRadioButton"
-        android:layout_marginBottom="51dp"
-        android:id="@+id/nextButtonProductDetails"
-        android:onClick="updateProductDetails"/>
-
     <TextView
         android:text="Choose the Product Details"
         android:layout_width="match_parent"
@@ -55,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:visibility="gone"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
         android:layout_marginStart="11dp"
@@ -71,23 +62,11 @@
             android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/lotNumber"
-        android:layout_marginBottom="23dp"
-        android:layout_above="@+id/nextButtonProductDetails"
-        android:layout_alignParentStart="true"
-        android:hint="Lot Number" />
-
     <TextView
         android:text="Choose Size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/sizeSpinner"
-        android:layout_alignStart="@+id/radioGroup2"
         android:id="@+id/sizeTextView" />
 
     <TextView
@@ -96,6 +75,81 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/flavourSpinner"
         android:layout_alignEnd="@+id/nextButtonProductDetails"
-        android:id="@+id/flavourView" />
+        android:id="@+id/flavourView"
+        android:textAppearance="@android:style/TextAppearance.Material.Small" />
+
+    <TextView
+        android:text=" Online Reseller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resellerTextView"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/flavourView"
+        android:layout_alignParentStart="true"
+        android:textAppearance="@android:style/TextAppearance.Material.Small" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:hint="Lot Number"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/resellerTextView"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:hint="Lot Number"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/resellerTextView"
+        android:layout_alignParentStart="true"
+        android:fontFamily="sans-serif" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:hint="Lot Number"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/resellerTextView"
+        android:layout_alignParentStart="true"
+        android:fontFamily="sans-serif" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:id="@+id/resellerSpinner"
+        android:drawSelectorOnTop="true"
+        android:layout_height="wrap_content"
+        android:dropDownWidth="match_parent"
+        android:layout_alignBottom="@+id/resellerTextView"
+        android:layout_alignStart="@+id/flavourSpinner" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/lotNumber"
+        android:hint="Lot Number"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/resellerTextView"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nextButtonProductDetails"
+        android:onClick="updateProductDetails"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

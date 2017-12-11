@@ -48,7 +48,7 @@ public class ProductAuditRequest implements Serializable,ListableProduct {
     private String placeOfPurchase;
     private String lotNumber;
     private FoodType foodType;
-    private Date expirationDate;
+    private String expirationDate;
     private String barCode;
     private String frontImageName;
     private String backImageName;
@@ -70,7 +70,7 @@ public class ProductAuditRequest implements Serializable,ListableProduct {
         this.placeOfPurchase = jsonObject.getString("placeOfPurchase");
         this.lotNumber = jsonObject.getString("lotNumber");
         this.foodType = (FoodType) jsonObject.get("foodType");
-        this.expirationDate = Util.getDate(jsonObject.getString("expirationDate"));
+//        this.expirationDate = Util.getDate(jsonObject.getString("expirationDate"));
         this.barCode = jsonObject.getString("barCode");
 
 //        Add the checks for the image
@@ -210,11 +210,11 @@ public class ProductAuditRequest implements Serializable,ListableProduct {
         this.lotNumber = lotNumber;
     }
 
-    public Date getExpirationDate() {
+    public String getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
 

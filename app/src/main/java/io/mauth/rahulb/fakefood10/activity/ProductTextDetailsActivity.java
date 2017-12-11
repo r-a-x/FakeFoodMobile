@@ -1,8 +1,11 @@
 package io.mauth.rahulb.fakefood10.activity;
 
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -10,14 +13,27 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.mauth.rahulb.fakefood10.R;
 import io.mauth.rahulb.fakefood10.adapter.FlavourAdapter;
+import io.mauth.rahulb.fakefood10.adapter.ResellerAdapter;
 import io.mauth.rahulb.fakefood10.adapter.SizeAdapter;
+import io.mauth.rahulb.fakefood10.core.AuditService;
+import io.mauth.rahulb.fakefood10.dto.ProductAuditResponse;
 import io.mauth.rahulb.fakefood10.model.Product;
 import io.mauth.rahulb.fakefood10.model.ProductAuditRequest;
+import io.mauth.rahulb.fakefood10.model.Reseller;
 import io.mauth.rahulb.fakefood10.util.Constants;
+import io.mauth.rahulb.fakefood10.util.Util;
 
 public class ProductTextDetailsActivity extends AppCompatActivity {
 
@@ -25,6 +41,7 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
     private Product product;
     private Spinner sizeSpinner;
     private Spinner flavourSpinner;
+    private Spinner resellerSpinner;
     private RadioGroup onlineOfline;
     private EditText lotNumber;
 
@@ -35,6 +52,7 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_details_text);
         init(savedInstanceState);
 
+        processResellerRequest();
         initFlavourSpinner();
         initSizeSpinner();
         initLotNumber();
@@ -49,6 +67,14 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
 
     private List<String> initSizeData(){
         return product.getSizes();
+    }
+
+    private List<String> initResellerData(List<Reseller> resellers){
+        List<String> finalResellers = new ArrayList<>();
+        for( Reseller reseller : resellers){
+            finalResellers.add( reseller.getName()+" ( " + reseller.getEcom() +" ) ");
+        }
+        return finalResellers;
     }
 
     private void initFlavourSpinner(){
@@ -95,21 +121,21 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
         String messaage = "All the required options are selected";
 
         productAuditRequest.setFlavour( flavourSpinner.getSelectedItem().toString());
-        productAuditRequest.setFlavour(sizeSpinner.getSelectedItem().toString());
+        productAuditRequest.setSize(sizeSpinner.getSelectedItem().toString());
         productAuditRequest.setLotNumber(lotNumber.getText().toString());
         productAuditRequest.setAndroidId(Constants.getAndroidId(this));
-        productAuditRequest.setName("Testing");
-        productAuditRequest.setCompanyId(1L);
-        productAuditRequest.setSize("2");
+        productAuditRequest.setName(product.getCompanyName());
+        productAuditRequest.setCompanyId(product.getCompanyId());
+        productAuditRequest.setPurchasePlaceEnum(ProductAuditRequest.PurchasePlaceEnum.ONLINE);
 
-        if ( onlineOfline.getCheckedRadioButtonId() == R.id.offline)
-            productAuditRequest.setPurchasePlaceEnum(ProductAuditRequest.PurchasePlaceEnum.OFFLINE);
-        else if ( onlineOfline.getCheckedRadioButtonId() == R.id.online)
-            productAuditRequest.setPurchasePlaceEnum(ProductAuditRequest.PurchasePlaceEnum.ONLINE);
-        else{
-            isComplete = Boolean.FALSE;
-            messaage = "Please select the purchase mode Online or Offline";
-        }
+//        if ( onlineOfline.getCheckedRadioButtonId() == R.id.offline)
+//            productAuditRequest.setPurchasePlaceEnum(ProductAuditRequest.PurchasePlaceEnum.OFFLINE);
+//        else if ( onlineOfline.getCheckedRadioButtonId() == R.id.online)
+//            productAuditRequest.setPurchasePlaceEnum(ProductAuditRequest.PurchasePlaceEnum.ONLINE);
+//        else{
+//            isComplete = Boolean.FALSE;
+//            messaage = "Please select the purchase mode Online or Offline";
+//        }
 
         if ( !isComplete){
             Toast.makeText(this,messaage, Toast.LENGTH_LONG).show();
@@ -135,7 +161,41 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
 
     }
 
-    private void processImageRequestForListing(){
+    private void processResellerRequest(){
 
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("API",error.toString());
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+            }
+
+        };
+        final ContextWrapper contextWrapper = this;
+        Response.Listener<JSONArray> response=new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+
+                    Type token = new TypeToken<List<Reseller>>() {}.getType();
+                    List<Reseller> lists = Util.gson.fromJson(response.toString(), token);
+
+                    resellerSpinner = (Spinner) findViewById(R.id.resellerSpinner);
+                    ResellerAdapter resellerAdapter = new ResellerAdapter(contextWrapper,R.layout.item_layout,initResellerData(lists));
+                    resellerSpinner.setAdapter(resellerAdapter);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+            }
+        };
+
+        AuditService auditService = new AuditService(this);
+
+        auditService.getResller(Constants.getAndroidId(this),
+                response,errorListener);
     }
 }

@@ -21,7 +21,9 @@ import org.json.JSONException;
 
 import java.io.File;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -265,7 +267,9 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity implements
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-        productAuditRequest.setExpirationDate( calendar.getTime());
+        SimpleDateFormat dt = new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss");
+        Date date = new Date(calendar.getTime().getTime());
+        productAuditRequest.setExpirationDate( dt.format(date));
     }
 
 }

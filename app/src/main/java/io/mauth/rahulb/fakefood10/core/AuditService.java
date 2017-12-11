@@ -34,6 +34,7 @@ public class AuditService {
     public static final String BACK_IMAGE_PARAM = "backImage";
     public static final String FRONT_IMAGE_PARAM = "frontImage";
     public static final String FILE_PARAM ="?file=";
+    private static final String RESELLER_PATH = "/resellers";
 
 
     private Context context;
@@ -91,5 +92,14 @@ public class AuditService {
         ImageRequest imageRequest = new ImageRequest(url,listener,0,0, ImageView.ScaleType.CENTER_CROP,Bitmap.Config.RGB_565,errorListener);
         singleton.addToRequestQueue(imageRequest);
 
+    }
+
+    public void getResller(String androidId,
+                           Response.Listener<JSONArray> listener,
+                           Response.ErrorListener errorListener
+                           ){
+        String url = host + RESELLER_PATH;
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,url,null,listener,errorListener);
+        singleton.addToRequestQueue(jsonArrayRequest);
     }
 }

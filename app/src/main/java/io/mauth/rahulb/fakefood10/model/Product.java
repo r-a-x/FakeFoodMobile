@@ -11,6 +11,7 @@ public class Product implements Serializable {
 
     private String name;
     private String companyName;
+    private Long companyId;
     private String productType;
     private String weight ;
     private String image;
@@ -119,5 +120,13 @@ public class Product implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 }
