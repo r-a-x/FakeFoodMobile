@@ -10,6 +10,7 @@ import java.util.List;
 public class Product implements Serializable {
 
     private String name;
+    private Long id;
     private String companyName;
     private Long companyId;
     private String productType;
@@ -128,5 +129,13 @@ public class Product implements Serializable {
 
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

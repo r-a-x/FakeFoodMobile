@@ -2,6 +2,7 @@ package io.mauth.rahulb.fakefood10.activity;
 
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +29,6 @@ import io.mauth.rahulb.fakefood10.adapter.FlavourAdapter;
 import io.mauth.rahulb.fakefood10.adapter.ResellerAdapter;
 import io.mauth.rahulb.fakefood10.adapter.SizeAdapter;
 import io.mauth.rahulb.fakefood10.core.AuditService;
-import io.mauth.rahulb.fakefood10.dto.ProductAuditResponse;
 import io.mauth.rahulb.fakefood10.model.Product;
 import io.mauth.rahulb.fakefood10.model.ProductAuditRequest;
 import io.mauth.rahulb.fakefood10.model.Reseller;
@@ -47,7 +47,7 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details_text);
         init(savedInstanceState);
@@ -125,7 +125,9 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
         productAuditRequest.setLotNumber(lotNumber.getText().toString());
         productAuditRequest.setAndroidId(Constants.getAndroidId(this));
         productAuditRequest.setName(product.getCompanyName());
+        productAuditRequest.setProductId(product.getId());
         productAuditRequest.setCompanyId(product.getCompanyId());
+        productAuditRequest.setPlaceOfPurchase(resellerSpinner.getSelectedItem().toString());
         productAuditRequest.setPurchasePlaceEnum(ProductAuditRequest.PurchasePlaceEnum.ONLINE);
 
 //        if ( onlineOfline.getCheckedRadioButtonId() == R.id.offline)
@@ -195,7 +197,7 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
 
         AuditService auditService = new AuditService(this);
 
-        auditService.getResller(Constants.getAndroidId(this),
+        auditService.getReseller(Constants.getAndroidId(this),
                 response,errorListener);
     }
 }

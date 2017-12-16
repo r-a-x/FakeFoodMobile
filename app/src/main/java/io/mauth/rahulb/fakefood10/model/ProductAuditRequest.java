@@ -40,6 +40,7 @@ public class ProductAuditRequest implements Serializable,ListableProduct {
     private String androidId;
     private RequestStatus status;
     private String name;
+    private Long productId;
     private Long companyId;
     private String company;
     private String size;
@@ -263,6 +264,14 @@ public class ProductAuditRequest implements Serializable,ListableProduct {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 }
 

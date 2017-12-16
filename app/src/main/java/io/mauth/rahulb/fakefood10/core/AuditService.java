@@ -93,9 +93,9 @@ public class AuditService {
 
     }
 
-    public void getResller(String androidId,
-                           Response.Listener<JSONArray> listener,
-                           Response.ErrorListener errorListener
+    public void getReseller(String androidId,
+                            Response.Listener<JSONArray> listener,
+                            Response.ErrorListener errorListener
                            ){
         String url = host + RESELLER_PATH;
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,url,null,listener,errorListener);
