@@ -31,8 +31,8 @@ public class ProductAuditResponse implements Serializable,ListableProduct {
     private FoodType foodType;
     private Date expirationDate;
     private String barCode;
-    private String frontCanisterImageName;
-    private String backCanisterImageName;
+    private String frontImageName;
+    private String backImageName;
     private String logoImageName;
 
     @Override
@@ -42,7 +42,7 @@ public class ProductAuditResponse implements Serializable,ListableProduct {
 
     @Override
     public String getData() {
-        return name + " " + barCode + " " + status.toString();
+        return name + " " + barCode + " " + status;
     }
 
     public Long getId() {
@@ -165,20 +165,20 @@ public class ProductAuditResponse implements Serializable,ListableProduct {
         this.barCode = barCode;
     }
 
-    public String getFrontCanisterImageName() {
-        return frontCanisterImageName;
+    public String getFrontImageName() {
+        return frontImageName;
     }
 
-    public void setFrontCanisterImageName(String frontCanisterImageName) {
-        this.frontCanisterImageName = frontCanisterImageName;
+    public void setFrontImageName(String frontImageName) {
+        this.frontImageName = frontImageName;
     }
 
-    public String getBackCanisterImageName() {
-        return backCanisterImageName;
+    public String getBackImageName() {
+        return backImageName;
     }
 
-    public void setBackCanisterImageName(String backCanisterImageName) {
-        this.backCanisterImageName = backCanisterImageName;
+    public void setBackImageName(String backImageName) {
+        this.backImageName = backImageName;
     }
 
     public String getLogoImageName() {

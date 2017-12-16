@@ -99,7 +99,7 @@ public class AuditResponseAdapter extends RecyclerView.Adapter<AuditResponseHold
         };
 
         AuditService auditService = new AuditService(ct);
-        auditService.getImages(Constants.getAndroidId(ct),productAuditResponse.getFrontCanisterImageName(),listener,errorListener);
+        auditService.getImages(Constants.getAndroidId(ct),productAuditResponse.getFrontImageName(),listener,errorListener);
     }
 }
 

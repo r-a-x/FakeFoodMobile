@@ -55,7 +55,6 @@ public class ProductAuditRequest implements Serializable,ListableProduct {
     private String logoImageName;
     private String description;
 
-
     public ProductAuditRequest(JSONObject jsonObject) throws JSONException, ParseException {
 
 
