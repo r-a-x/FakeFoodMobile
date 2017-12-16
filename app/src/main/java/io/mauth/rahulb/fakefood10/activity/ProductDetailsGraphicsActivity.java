@@ -19,6 +19,7 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.lang.reflect.Type;
@@ -210,10 +211,10 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity implements
 
         };
 
-        Response.Listener<JSONArray> responseArray=new Response.Listener<JSONArray>() {
+        Response.Listener<JSONObject> responseArray=new Response.Listener<JSONObject>() {
 
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(JSONObject response) {
                 Toast.makeText(getApplicationContext(),"The request submitted to server !! Wait While we verify the product",Toast.LENGTH_LONG).show();
                 processMainActivity();
             }

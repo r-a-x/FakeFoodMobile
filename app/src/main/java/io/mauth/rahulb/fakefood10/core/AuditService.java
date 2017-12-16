@@ -8,9 +8,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Map;
@@ -57,13 +59,14 @@ public class AuditService {
     }
 
     public void postAudits(String androidId, ProductAuditRequest productAuditRequest,
-                           Response.Listener<JSONArray> listener,
+                           Response.Listener<JSONObject> listener,
                            Response.ErrorListener errorListener) throws JSONException {
 
         String url = host  + AUDITS_PATH ;
         String request =  Util.getJson(productAuditRequest,ProductAuditRequest.class) ;
-        CustomJSONArrayRequest jsonArrayRequest = new CustomJSONArrayRequest(Request.Method.POST,url,request,listener,errorListener);
-        singleton.addToRequestQueue(jsonArrayRequest);
+        JSONObject jsonRequest = new JSONObject(request);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,url,jsonRequest,listener,errorListener);
+        singleton.addToRequestQueue(jsonObjectRequest);
 
     }
 
