@@ -67,8 +67,8 @@ public class AuditResponseAdapter extends RecyclerView.Adapter<AuditResponseHold
             }
         };
 
-        holder.recyclerTextView.setOnClickListener(onClickListener);
-        holder.imageView.setOnClickListener(onClickListener);
+//        holder.recyclerTextView.setOnClickListener(onClickListener);
+//        holder.imageView.setOnClickListener(onClickListener);
     }
 
     @Override

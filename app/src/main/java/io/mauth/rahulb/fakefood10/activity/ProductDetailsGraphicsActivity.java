@@ -211,7 +211,7 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity implements
 
             @Override
             public void onResponse(JSONArray response) {
-                Toast.makeText(getApplicationContext(),"The request submitted to server",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"The request submitted to server !! Wait While we verify the product",Toast.LENGTH_LONG).show();
                 processMainActivity();
             }
         };
@@ -233,6 +233,8 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity implements
     }
 
     private void processMainActivity() {
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 
     private Boolean isAllPropertyScanned(ProductAuditRequest productAuditRequest){

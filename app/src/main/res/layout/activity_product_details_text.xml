@@ -88,41 +88,6 @@
         android:layout_alignParentStart="true"
         android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText3"
-        android:hint="Lot Number"
-        android:layout_marginTop="26dp"
-        android:layout_below="@+id/resellerTextView"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:hint="Lot Number"
-        android:layout_marginTop="26dp"
-        android:layout_below="@+id/resellerTextView"
-        android:layout_alignParentStart="true"
-        android:fontFamily="sans-serif" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:hint="Lot Number"
-        android:layout_marginTop="26dp"
-        android:layout_below="@+id/resellerTextView"
-        android:layout_alignParentStart="true"
-        android:fontFamily="sans-serif" />
-
     <Spinner
         android:layout_width="wrap_content"
         android:id="@+id/resellerSpinner"
@@ -132,17 +97,6 @@
         android:layout_alignBottom="@+id/resellerTextView"
         android:layout_alignStart="@+id/flavourSpinner" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/lotNumber"
-        android:hint="Lot Number"
-        android:layout_marginTop="26dp"
-        android:layout_below="@+id/resellerTextView"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:text="Next"
         android:layout_width="wrap_content"
@@ -151,5 +105,16 @@
         android:onClick="updateProductDetails"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/lotNumber"
+        android:hint="Lot Number"
+        android:layout_below="@+id/resellerTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="49dp" />
 
 </RelativeLayout>
