@@ -1,81 +1,59 @@
 package io.mauth.rahulb.fakefood10.activity;
 
-import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import io.mauth.rahulb.fakefood10.R;
-import io.mauth.rahulb.fakefood10.core.AuditService;
-import io.mauth.rahulb.fakefood10.model.ProductAuditRequest;
+import io.mauth.rahulb.fakefood10.dto.ProductAuditResponse;
+import io.mauth.rahulb.fakefood10.model.RequestStatus;
 import io.mauth.rahulb.fakefood10.util.Constants;
 
 public class ProductAuditActivity extends AppCompatActivity {
 
-    private ProductAuditRequest productAuditRequest;
     private TextView productNameTextView;
     private TextView companyTextView;
-    private TextView flavourTextView;
-    private TextView sizeTextView;
-    private TextView typeTextView;
-    private TextView descriptionTextView;
-    private Button auditButton;
     private ImageView imageView;
+    private TextView statusTextView;
+    private TextView barCodeTextView;
+    private Bitmap image;
+    private ProductAuditResponse auditResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product2);
-        productAuditRequest = (ProductAuditRequest) getIntent().getSerializableExtra(Constants.PRODUCT_AUDIT_REQUEST_KEY);
-        AuditService auditService = new AuditService(this);
-        init(productAuditRequest);
+        setContentView(R.layout.audit_status_activity);
+        auditResponse = (ProductAuditResponse) getIntent().getSerializableExtra(Constants.PRODUCT_AUDIT_RESPONSE_TEXT_KEY);
+        image=getIntent().getParcelableExtra(Constants.PRODUCT_AUDIT_RESPONSE_IMAGE_KEY);
+        init();
     }
 
-    private void init(ProductAuditRequest product){
+    private void init(){
 
         productNameTextView = (TextView) findViewById(R.id.productNameTextView);
-        productNameTextView.setText(product.getName());
+        productNameTextView.setText(auditResponse.getName());
 
         companyTextView = (TextView) findViewById(R.id.companyTextView);
-        companyTextView.setText(product.getCompanyId().toString());
-
-        flavourTextView = (TextView) findViewById(R.id.flavourTextView);
-        flavourTextView.setVisibility(View.INVISIBLE);
-
-//        flavourTextView.setText(product.ge);
-
-        sizeTextView = (TextView) findViewById(R.id.sizeTextView);
-        sizeTextView.setVisibility(View.INVISIBLE);
-
-        typeTextView = (TextView) findViewById(R.id.typeTextView);
-        typeTextView.setText(product.getCompany());
-
-        descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);
-        descriptionTextView.setText(product.getDescription());
+        companyTextView.setText(auditResponse.getCompany());
 
         imageView = (ImageView) findViewById(R.id.imageView);
-        imageView.setImageBitmap(  product.getImage() );
+        imageView.setImageBitmap(  image );
 
-//        auditButton = (Button) (Button) findViewById(R.id.auditButton);
-//        auditButton.setOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(v.getContext(),ProductListingActivity.class);
-//                        startActivity(intent);
-//                    }
-//                }
-//        );
+        statusTextView = (TextView) findViewById(R.id.statusTextView);
+        if ( auditResponse.getStatus() == RequestStatus.FAKE)
+            statusTextView.setTextColor(Color.RED);
+        if (auditResponse.getStatus() == RequestStatus.ORIGINAL)
+            statusTextView.setTextColor(Color.GREEN);
 
-    }
+        statusTextView.setText(auditResponse.getStatus().toString().trim());
 
-    private void startProductTextDetailsActivity(View v){
-        Intent intent = new Intent(this, ProductTextDetailsActivity.class);
-        intent.putExtra(Constants.PRODUCT_AUDIT_REQUEST_KEY,new ProductAuditRequest());
-        intent.putExtra(Constants.PRODUCT_DETAIL_KEY, productAuditRequest);
-        startActivity(intent);
+        barCodeTextView = (TextView) findViewById(R.id.barCodeTextView);
+        barCodeTextView.setText(auditResponse.getBarCode());
+
     }
 }

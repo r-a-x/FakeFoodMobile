@@ -8,7 +8,11 @@ import android.provider.Settings;
  */
 
 public class Constants {
-    public static final String PRODUCT_AUDIT_REQUEST_KEY = "product_check_request";
+    public static final String PRODUCT_AUDIT_REQUEST_KEY = "product_aduit_request";
+
+    public static final String PRODUCT_AUDIT_RESPONSE_IMAGE_KEY = "product_aduit_response_image";
+
+    public static final String PRODUCT_AUDIT_RESPONSE_TEXT_KEY = "product_aduit_response_text";
 
     public static final String PRODUCT_FLAVOUR ="flavour" ;
 

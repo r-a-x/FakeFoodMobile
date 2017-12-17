@@ -110,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
 
         r1= (RecyclerView) findViewById(R.id.recycler_view);
         AuditResponseAdapter adapter  = new AuditResponseAdapter(productAuditRequests,this,
-                ProductAuditActivity.class, Constants.PRODUCT_AUDIT_REQUEST_KEY);
+                ProductAuditActivity.class, Constants.PRODUCT_AUDIT_RESPONSE_IMAGE_KEY,
+                Constants.PRODUCT_AUDIT_RESPONSE_TEXT_KEY);
 
         r1.setAdapter(adapter);
         r1.setLayoutManager(new LinearLayoutManager(this));

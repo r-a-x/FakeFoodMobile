@@ -18,7 +18,7 @@ import io.mauth.rahulb.fakefood10.util.Util;
  * Created by rahulb on 1/11/17.
  */
 
-public class ProductAuditRequest implements Serializable,ListableProduct {
+public class ProductAuditRequest implements Serializable {
 
     /*
     *
@@ -56,39 +56,10 @@ public class ProductAuditRequest implements Serializable,ListableProduct {
     private String logoImageName;
     private String description;
 
-    public ProductAuditRequest(JSONObject jsonObject) throws JSONException, ParseException {
 
+    public ProductAuditRequest(){
 
-        this.dbId = jsonObject.getLong("dbId");
-        this.status = RequestStatus.valueOf( jsonObject.getString("status") );
-        this.name = jsonObject.getString("name");
-        this.companyId = jsonObject.getLong("companyId");
-        this.company = jsonObject.getString("comany");
-        this.size = jsonObject.getString("size");
-        this.flavour = jsonObject.getString("flavour");
-        this.purchasePlaceEnum = PurchasePlaceEnum.valueOf(jsonObject.getString("purchasePlaceEnum"));
-        this.placeOfPurchase = jsonObject.getString("placeOfPurchase");
-        this.lotNumber = jsonObject.getString("lotNumber");
-        this.foodType = (FoodType) jsonObject.get("foodType");
-//        this.expirationDate = Util.getDate(jsonObject.getString("expirationDate"));
-        this.barCode = jsonObject.getString("barCode");
-
-//        Add the checks for the image
     }
-
-
-    public static List<ProductAuditRequest> getListFromJSONArray(JSONArray jsonArray) throws JSONException, ParseException {
-        List<ProductAuditRequest> result = new ArrayList<>();
-        for ( int i=0; i < jsonArray.length();i++){
-            result.add( new ProductAuditRequest( jsonArray.getJSONObject(i) ));
-        }
-            return result;
-    }
-
-    public ProductAuditRequest() {
-        status = RequestStatus.PENDING;
-    }
-
     public ProductAuditRequest(Long id, Long dbId) {
 
         this.id = id;
@@ -121,14 +92,7 @@ public class ProductAuditRequest implements Serializable,ListableProduct {
         this.dbId = dbId;
     }
 
-    @Override
-    public Bitmap getImage() {
-//        if(frontCanisterImage == null)
-            return null;
-//        return Util.base64ToBitmap(frontCanisterImage);
-    }
 
-    @Override
     public String getData() {
         return name + " " + barCode + " " + status.toString();
     }

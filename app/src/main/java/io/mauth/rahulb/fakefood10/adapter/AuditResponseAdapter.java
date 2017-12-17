@@ -30,13 +30,16 @@ public class AuditResponseAdapter extends RecyclerView.Adapter<AuditResponseHold
     private List<ProductAuditResponse> auditResponses;
     private ContextWrapper ct;
     private Class aClass;
-    private String dataKey;
+    private String dataKeyText;
+    private String dataKeyImage;
+    private Bitmap bitmap;
 
-    public AuditResponseAdapter(List<ProductAuditResponse> auditResponses, ContextWrapper ct, Class aClass, String dataKey) {
+    public AuditResponseAdapter(List<ProductAuditResponse> auditResponses, ContextWrapper ct, Class aClass, String dataKeyImage,String dataKeyText) {
         this.auditResponses = auditResponses;
         this.ct = ct;
         this.aClass = aClass;
-        this.dataKey = dataKey;
+        this.dataKeyImage = dataKeyImage;
+        this.dataKeyText = dataKeyText;
     }
 
     @Override
@@ -58,17 +61,16 @@ public class AuditResponseAdapter extends RecyclerView.Adapter<AuditResponseHold
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Need to send the product from here to the Next Activity
-                Toast.makeText(ct,"This is the position number"+ String.valueOf(position),Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ct,aClass);
-                intent.putExtra(dataKey,auditResponses.get(position));
+                intent.putExtra(dataKeyText,auditResponses.get(position));
+                intent.putExtra(dataKeyImage,bitmap);
                 ct.startActivity(intent);
 
             }
         };
 
-//        holder.recyclerTextView.setOnClickListener(onClickListener);
-//        holder.imageView.setOnClickListener(onClickListener);
+        holder.recyclerTextView.setOnClickListener(onClickListener);
+        holder.imageView.setOnClickListener(onClickListener);
     }
 
     @Override
@@ -82,7 +84,7 @@ public class AuditResponseAdapter extends RecyclerView.Adapter<AuditResponseHold
             @Override
             public void onResponse(Bitmap response) {
 
-
+                bitmap = response;
                 holder.imageView.setImageBitmap(
                         response
                 );
