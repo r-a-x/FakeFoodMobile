@@ -61,7 +61,7 @@ public class ProductListingAdapter extends RecyclerView.Adapter<ProductListingHo
             @Override
             public void onClick(View v) {
                 // Need to send the product from here to the Next Activity
-                Toast.makeText(ct,"This is the position number"+ String.valueOf(position),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ct,"This is the position number"+ String.valueOf(position),Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ct,aClass);
                 intent.putExtra(dataKey,listableProducts.get(position));
                 ct.startActivity(intent);

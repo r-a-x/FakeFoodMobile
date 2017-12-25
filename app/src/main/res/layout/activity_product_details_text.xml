@@ -16,30 +16,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
-        android:layout_above="@+id/radioGroup"
         android:layout_alignEnd="@+id/flavourSpinner"
         android:layout_marginBottom="14dp"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:fontFamily="sans-serif" />
 
     <Spinner
-        android:layout_width="200dp"
+        android:layout_width="fill_parent"
         android:id="@+id/sizeSpinner"
         android:drawSelectorOnTop="true"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/sizeTextView"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="37dp"
-        android:layout_height="wrap_content"
-        android:dropDownWidth="match_parent" />
-
-    <Spinner
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/flavourSpinner"
-        android:drawSelectorOnTop="true"
-        android:layout_below="@+id/sizeSpinner"
-        android:layout_alignStart="@+id/sizeSpinner"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="39dp" />
+        android:layout_marginTop="5dp"
+        android:dropDownWidth="match_parent"
+        android:layout_height="30dp" />
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -62,48 +52,32 @@
             android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
 
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:id="@+id/flavourSpinner"
+        android:drawSelectorOnTop="true"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/flavourView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Flavour"
+        android:layout_height="wrap_content"
+        android:id="@+id/flavourView"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        android:layout_below="@+id/sizeSpinner"
+        android:layout_alignEnd="@+id/sizeTextView"
+        android:layout_marginTop="30dp"
+        android:layout_width="fill_parent" />
+
     <TextView
         android:text="Choose Size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/sizeSpinner"
-        android:id="@+id/sizeTextView" />
-
-    <TextView
-        android:text="Choose Flavour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/flavourSpinner"
-        android:layout_alignEnd="@+id/nextButtonProductDetails"
-        android:id="@+id/flavourView"
-        android:textAppearance="@android:style/TextAppearance.Material.Small" />
-
-    <TextView
-        android:text=" Online Reseller"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/resellerTextView"
-        android:layout_marginTop="48dp"
-        android:layout_below="@+id/flavourView"
-        android:layout_alignParentStart="true"
-        android:textAppearance="@android:style/TextAppearance.Material.Small" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:id="@+id/resellerSpinner"
-        android:drawSelectorOnTop="true"
-        android:layout_height="wrap_content"
-        android:dropDownWidth="match_parent"
-        android:layout_alignBottom="@+id/resellerTextView"
-        android:layout_alignStart="@+id/flavourSpinner" />
-
-    <Button
-        android:text="Next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/nextButtonProductDetails"
-        android:onClick="updateProductDetails"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/sizeTextView"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="25dp"
         android:layout_alignParentStart="true" />
 
     <EditText
@@ -113,8 +87,39 @@
         android:ems="10"
         android:id="@+id/lotNumber"
         android:hint="Lot Number"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/resellerSpinner"
+        android:layout_toEndOf="@+id/onlineOfline" />
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:id="@+id/resellerSpinner"
+        android:drawSelectorOnTop="true"
+        android:layout_height="30dp"
+        android:dropDownWidth="match_parent"
+        android:layout_marginTop="5dp"
         android:layout_below="@+id/resellerTextView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="49dp" />
+        android:layout_toEndOf="@+id/onlineOfline" />
+
+    <TextView
+        android:text=" Online Reseller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resellerTextView"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        android:layout_below="@+id/flavourSpinner"
+        android:layout_marginTop="30dp"
+        android:drawSelectorOnTop="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nextButtonProductDetails"
+        android:onClick="updateProductDetails"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

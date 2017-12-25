@@ -27,8 +27,8 @@ import io.mauth.rahulb.fakefood10.util.Util;
 public class AuditService {
 
 
-    private static final String host = "http://172.27.14.170:8080";
-//    private static final String host = "http://192.168.0.103:8080";
+    private static final String host = "http://35.202.86.142:8080";
+//    private static final String host = "http://192.168.0.104:8080";
     private static final String AUDITS_PATH = "/audits";
     private static final String PRODUCTS_PATH="/products";
     private static final String ANDROID_ID_PARAM = "?androidId=";

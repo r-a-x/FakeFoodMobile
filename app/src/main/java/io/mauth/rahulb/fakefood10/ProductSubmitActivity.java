@@ -14,7 +14,7 @@ public class ProductSubmitActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_submit);
-        Toast.makeText(this,"Yo some text",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,"Yo some text",Toast.LENGTH_SHORT).show();
     }
 
     public void goToMain(View view) {

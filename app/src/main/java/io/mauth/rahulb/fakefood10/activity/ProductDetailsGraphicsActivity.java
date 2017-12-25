@@ -2,6 +2,7 @@ package io.mauth.rahulb.fakefood10.activity;
 
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -104,15 +105,12 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity implements
                 return;
             case Constants.BACK_IMAGE:
                 backImage = getBitmap(data);
-                processImageUploadRequest();
                 return;
             case Constants.FRONT_IMAGE:
                 frontImage = getBitmap(data);
-                processImageUploadRequest();
                 return;
             case Constants.LOGO_IMAGE:
                 logoImage = getBitmap(data);
-                processImageUploadRequest();
                 return;
         }
     }
@@ -126,13 +124,14 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity implements
 
     public void submitRequest(View view) {
         try {
-            processAuditRequest();
-        } catch (JSONException e) {
+            processImageUploadRequest();
+        }
+        catch(Exception e){
             Toast.makeText(this,"Oops !! Error uploading the Audit Request",Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void  openCamera(View view) {
+    public void openCamera(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, Constants.FRONT_IMAGE);
@@ -175,12 +174,18 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity implements
         if ( logoImage == null || backImage == null || frontImage == null)
             return;
 
+        final Context context = this;
         final Response.Listener<String> imageResponse = new Response.Listener<String>(){
             @Override
             public void onResponse(String response) {
 
                 Type token = new TypeToken<ImageUploadResponse>() {}.getType();
                 imageUploadResponse = Util.gson.fromJson(response, token);
+                try {
+                    processAuditRequest();
+                } catch (JSONException e) {
+                    Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT).show();
+                }
 
             }
         };
@@ -206,7 +211,7 @@ public class ProductDetailsGraphicsActivity extends AppCompatActivity implements
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("API",error.toString());
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
             }
 
         };

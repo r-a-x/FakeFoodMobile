@@ -64,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        getDelegate().onPostResume();
+        processAuditResponse();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         super.onCreateOptionsMenu(menu);
@@ -123,10 +130,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void fuckYeah(View view) {
-        Toast.makeText(this,"You The thing got clicked",Toast.LENGTH_LONG).show();
-    }
-
     private void processAuditResponse(){
 
         Response.ErrorListener errorListener = new Response.ErrorListener() {
@@ -147,8 +150,6 @@ public class MainActivity extends AppCompatActivity {
 
                     Type token = new TypeToken<List<ProductAuditResponse>>() {}.getType();
                     List<ProductAuditResponse> lists = Util.gson.fromJson(response.toString(), token);
-
-//                List<ProductAuditRequest> lists = Util.getListFromJSON(new ProductAuditRequest(),response.toString());
                     initProductCheckRequestsView(lists);
 
                 } catch (Exception e) {

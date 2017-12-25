@@ -42,7 +42,7 @@ public class ProductAuditResponse implements Serializable,ListableProduct {
 
     @Override
     public String getData() {
-        return name + " " + barCode + " " + status;
+        return name + " \n" + barCode + " \n" + status;
     }
 
     public Long getId() {

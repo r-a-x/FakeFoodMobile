@@ -4,7 +4,6 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -97,8 +96,6 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
         onlineOfline = (RadioGroup) findViewById(R.id.onlineOfline);
     }
 
-    private void initPurchsePlace(){
-    }
 
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
@@ -115,10 +112,14 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
         }
     }
 
+    private Boolean isComplete(){
+        if ( productAuditRequest.getLotNumber().equalsIgnoreCase("")){
+            Toast.makeText(this,"Please Enter the Lot Number !! ",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
     public void updateProductDetails(View view) {
-
-        Boolean isComplete = Boolean.TRUE;
-        String messaage = "All the required options are selected";
 
         productAuditRequest.setFlavour( flavourSpinner.getSelectedItem().toString());
         productAuditRequest.setSize(sizeSpinner.getSelectedItem().toString());
@@ -130,17 +131,7 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
         productAuditRequest.setPlaceOfPurchase(resellerSpinner.getSelectedItem().toString());
         productAuditRequest.setPurchasePlaceEnum(ProductAuditRequest.PurchasePlaceEnum.ONLINE);
 
-//        if ( onlineOfline.getCheckedRadioButtonId() == R.id.offline)
-//            productAuditRequest.setPurchasePlaceEnum(ProductAuditRequest.PurchasePlaceEnum.OFFLINE);
-//        else if ( onlineOfline.getCheckedRadioButtonId() == R.id.online)
-//            productAuditRequest.setPurchasePlaceEnum(ProductAuditRequest.PurchasePlaceEnum.ONLINE);
-//        else{
-//            isComplete = Boolean.FALSE;
-//            messaage = "Please select the purchase mode Online or Offline";
-//        }
-
-        if ( !isComplete){
-            Toast.makeText(this,messaage, Toast.LENGTH_LONG).show();
+        if ( !isComplete()){
             return;
         }
 
@@ -170,7 +161,7 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("API",error.toString());
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
             }
 
         };
@@ -191,7 +182,6 @@ public class ProductTextDetailsActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
             }
         };
 

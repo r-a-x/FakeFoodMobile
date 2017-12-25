@@ -25,7 +25,7 @@ public class SearchActivity extends AppCompatActivity {
         if( Intent.ACTION_SEARCH.equals(intent.getAction())){
             String querry = intent.getStringExtra(SearchManager.QUERY);
             Log.d("Querry","The Text");
-            Toast.makeText(this,"The querry is ", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this,"The querry is ", Toast.LENGTH_SHORT).show();
             findProducts(querry);
         }
     }
